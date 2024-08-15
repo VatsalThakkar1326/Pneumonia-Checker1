@@ -48,20 +48,20 @@ def predict():
         confidence_score = np.max(predictions) * 100  # Convert to percentage
 
         # Generate a response based on confidence and prediction class
-        if confidence_score >= 90:
-            if confidence_score > 95:
+        if confidence_score >= 50:
+            if confidence_score > 75:
                 if predicted_class == 0:  # NORMAL
-                    message = f'Your result is NORMAL with a high confidence of {confidence_score:.2f}%. This is reassuring, but we still recommend consulting with a medical professional for a thorough assessment.'
+                    message = f'Your result is NORMAL. This is reassuring, but we still recommend consulting with a medical professional for a thorough assessment.'
                 else:  # Pneumonia cases
-                    message = f'Your result is {predicted_label} with a high confidence of {confidence_score:.2f}%. This is significant, and we strongly recommend consulting a healthcare professional for a detailed evaluation.'
+                    message = f'Your result is {predicted_label}. This is significant, and we strongly recommend consulting a healthcare professional for a detailed evaluation.'
             else:
                 if predicted_class == 0:  # NORMAL
-                    message = f'Your result is NORMAL with a confidence of {confidence_score:.2f}%. It\'s advisable to consult a specialist to get a detailed evaluation.'
+                    message = f'Your result is NORMAL. It\'s advisable to consult a specialist to get a detailed evaluation.'
                 else:  # Pneumonia cases
-                    message = f'Your result is {predicted_label} with a confidence of {confidence_score:.2f}%. Please consult a specialist for further evaluation and guidance.'
+                    message = f'Your result is {predicted_label}. Please consult a specialist for further evaluation and guidance.'
         else:
             # General message if confidence is below 90%
-            message = f'We cannot provide a definitive analysis with confidence below 90%. It is recommended to consult with a specialist for further evaluation.'
+            message = f'We cannot provide a definitive analysis with confidence for this X-RAY. It is recommended to consult with a specialist for further evaluation.'
 
         # Send the prediction result, image path, and message
         response = {
